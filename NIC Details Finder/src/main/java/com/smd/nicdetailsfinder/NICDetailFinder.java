@@ -3,12 +3,16 @@ package com.smd.nicdetailsfinder;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.util.Date;
+
 public class NICDetailFinder {
 
     private String gender, firstTwo, middle, mon;
     private final int[] month = { 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366 };
     private int i = -1, d = 0;
     private int mid,mtemp,monInNum,checkValue;
+
+    public static String BIRTH_DAY,AGE,YEAR,MONTH,DAY,GENDER,MONTH_NUMBER;
 
     public NICDetailFinder(String nicNumber){
         if(nicNumber.length() == 10 || nicNumber.length() == 12)
@@ -236,6 +240,54 @@ public class NICDetailFinder {
             default:
                 return 0;
         }
+    }
+
+    protected void finalize(){
+        Date date = new Date();
+        if (checkValue == 10)
+        {
+            BIRTH_DAY =  ("19" + firstTwo) + " " + mon + " " + d;
+        }
+        else if (checkValue == 12)
+        {
+            BIRTH_DAY =  firstTwo + " " + mon + " " + d;
+        }
+        else
+        {
+            BIRTH_DAY =  null;
+        }
+
+        if (checkValue == 10)
+        {
+            AGE = Integer.toString(date.getYear() - Integer.parseInt(("19" + firstTwo)));
+        }
+        else if (checkValue == 12)
+        {
+            AGE =  Integer.toString(date.getYear() - Integer.parseInt(firstTwo));
+        }
+        else
+        {
+            AGE = null;
+        }
+
+        if (checkValue == 10)
+        {
+            YEAR =  "19" + firstTwo;
+        }
+        else if(checkValue == 12)
+        {
+            YEAR =  firstTwo;
+        }
+        else
+        {
+            YEAR =  null;
+        }
+
+        MONTH = mon;
+        DAY = Integer.toString(d);
+        GENDER = gender;
+        MONTH_NUMBER = Integer.toString(monInNum);
+
     }
 
     public static void testLibrary(Context context,String msg){
