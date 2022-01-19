@@ -1,12 +1,12 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
 }
 
 android {
     compileSdk 30
 
     defaultConfig {
-        applicationId "com.smd.nicdetailsfinder"
+//        applicationId "com.smd.nicdetailsfinder"
         minSdk 20
         targetSdk 30
         versionCode 1
